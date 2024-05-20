@@ -1,0 +1,1183 @@
+fileFormatVersion: 2
+guid: 19194d66dcbd7fe448a6b7428d1be866
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1092
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 187eb9df9ad1ffc4ca3ab0a0e308e27c
+      internalID: 1979612070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_1
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 1092
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 600e6dce51b9d414997b889b43be932e
+      internalID: 2046117114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_2
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 1092
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c31b825e3e1d141a375731b34a73bd
+      internalID: 700232277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_3
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1092
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccdfc33fe538be9428b4ae18f7d3ee95
+      internalID: -1754173241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_4
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 1092
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54e0c96d1f358a64ba76e7353e02cabc
+      internalID: -117385796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_5
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 1092
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b96f2119a4d9f28429107dd0d7a1fe77
+      internalID: 958306522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 938
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb130320e67ff5945a7ee9acc3f599de
+      internalID: -402682731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_7
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 938
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 099bb727b94224c46a70512ba5d5860e
+      internalID: 2135246479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_8
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 938
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75ee4b3fbd38d4340b41d8ef5f44d647
+      internalID: -2059527627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_9
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 938
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 805fbf5741323a447804ec4d4e9d0e68
+      internalID: -1222831829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_10
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 938
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 350e92d376ba5c14880aba524024d37a
+      internalID: 1346920508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_11
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 938
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75fb65c50a786a44495429129cc66f1b
+      internalID: -248296874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 784
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 140da3cc9b23169488b7ac7b7d776057
+      internalID: 428961451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_13
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 784
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95df629c012cd444e9f8add39f67adcc
+      internalID: 1403946938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_14
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 784
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74de4545052aa764988edfa8272243ac
+      internalID: -30056836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_15
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 784
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb1cc9f5edd66146ad3005385a51010
+      internalID: 1282326574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_16
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 784
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 660c976fba0179745b94c3de2f2cc463
+      internalID: 1820975510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_17
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 784
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6a28194a444cf5449e95ecf25781393
+      internalID: 693091440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 630
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3abea6ec42badd142a458f582ade735d
+      internalID: 1191841347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_19
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 630
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8611dc4886f164ea9a4cff843f18d5
+      internalID: -678457275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_20
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 630
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 714a3fda2c2f9e74dae6b81ea9926887
+      internalID: 167660162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_21
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 630
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e041aaa03cf00746a6b30f0858294c5
+      internalID: -95494786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_22
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 630
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cf80f9949951504c92ffe6212dece57
+      internalID: -1575971100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_23
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 630
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0405210644d2d4c87791cf21fc6b2b
+      internalID: 1269478218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 476
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9afc8fb5bd888646bc9c3fa446dd09d
+      internalID: -1126741760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_25
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 476
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02fee2be6abbfaa4f8a7fe025c1d7d57
+      internalID: 767121544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_26
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 476
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 086283dcd04d592479eee27297c53d7f
+      internalID: -1757874081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_27
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 476
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57ef0debc5c7f8842915bd69bcc13835
+      internalID: 1669576404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_28
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 476
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0a73af98ec196e42aa67d305eb687db
+      internalID: 1625802481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_29
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 476
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05b6202b52a35d445bba488aaf95adfa
+      internalID: 330701134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 322
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e417a19b43922fa469997f56a839969e
+      internalID: -1375202986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_31
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 322
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b18b94bc960c14b9f071c8fb1d9819
+      internalID: -1785803732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_32
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 322
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17f3af23bf41fb840b68911f641f93e2
+      internalID: -1757740832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_33
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 322
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a24cf2049354a8c4da04bb9b181ad233
+      internalID: -15772597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_34
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 322
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dfed05930f14a6439aa600927f34939
+      internalID: 1774197072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_35
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 322
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f663caaf05adf1840bb7b9115ec6c0fb
+      internalID: -984053794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 457b020e8a496a04cbfc27dd8150265c
+      internalID: 1058666840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_37
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 168
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3d201b92c2818842b4a95e7d8fb0c5b
+      internalID: -1431167657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_38
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 168
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 083e95112d0dd8c45a8c0df6583fb819
+      internalID: 1878605382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_39
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 168
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bd7634fc4c9ad741af75e3ff5a6ef2f
+      internalID: 1531698838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_40
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 168
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a86e7589487ded43b67c160ac33dad7
+      internalID: -1457824468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_41
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 168
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aae0d3b4a39014e47893d03ffdef8c30
+      internalID: 995352940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 14
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13540b4509381014dadd59503ca56e0a
+      internalID: -556244585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_43
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 14
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7cc8017da64440408d7f4595e634b86
+      internalID: 2131092070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_44
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 14
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53a7beab57df2c54daa3fbe78b7cb7c4
+      internalID: 237056829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_45
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 14
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 609c8b40b980c2a4f9edd1d64fd1e96c
+      internalID: -983072638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_46
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 14
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9024e72588f08409b6206c61c353d1
+      internalID: -2142345805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warrior_Red-Organized-left_47
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 14
+        width: 154
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3229d7f5afce1a4eb7d003966881e5b
+      internalID: 1328493603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Warrior_Red-Organized-left_0: 1979612070
+      Warrior_Red-Organized-left_1: 2046117114
+      Warrior_Red-Organized-left_10: 1346920508
+      Warrior_Red-Organized-left_11: -248296874
+      Warrior_Red-Organized-left_12: 428961451
+      Warrior_Red-Organized-left_13: 1403946938
+      Warrior_Red-Organized-left_14: -30056836
+      Warrior_Red-Organized-left_15: 1282326574
+      Warrior_Red-Organized-left_16: 1820975510
+      Warrior_Red-Organized-left_17: 693091440
+      Warrior_Red-Organized-left_18: 1191841347
+      Warrior_Red-Organized-left_19: -678457275
+      Warrior_Red-Organized-left_2: 700232277
+      Warrior_Red-Organized-left_20: 167660162
+      Warrior_Red-Organized-left_21: -95494786
+      Warrior_Red-Organized-left_22: -1575971100
+      Warrior_Red-Organized-left_23: 1269478218
+      Warrior_Red-Organized-left_24: -1126741760
+      Warrior_Red-Organized-left_25: 767121544
+      Warrior_Red-Organized-left_26: -1757874081
+      Warrior_Red-Organized-left_27: 1669576404
+      Warrior_Red-Organized-left_28: 1625802481
+      Warrior_Red-Organized-left_29: 330701134
+      Warrior_Red-Organized-left_3: -1754173241
+      Warrior_Red-Organized-left_30: -1375202986
+      Warrior_Red-Organized-left_31: -1785803732
+      Warrior_Red-Organized-left_32: -1757740832
+      Warrior_Red-Organized-left_33: -15772597
+      Warrior_Red-Organized-left_34: 1774197072
+      Warrior_Red-Organized-left_35: -984053794
+      Warrior_Red-Organized-left_36: 1058666840
+      Warrior_Red-Organized-left_37: -1431167657
+      Warrior_Red-Organized-left_38: 1878605382
+      Warrior_Red-Organized-left_39: 1531698838
+      Warrior_Red-Organized-left_4: -117385796
+      Warrior_Red-Organized-left_40: -1457824468
+      Warrior_Red-Organized-left_41: 995352940
+      Warrior_Red-Organized-left_42: -556244585
+      Warrior_Red-Organized-left_43: 2131092070
+      Warrior_Red-Organized-left_44: 237056829
+      Warrior_Red-Organized-left_45: -983072638
+      Warrior_Red-Organized-left_46: -2142345805
+      Warrior_Red-Organized-left_47: 1328493603
+      Warrior_Red-Organized-left_5: 958306522
+      Warrior_Red-Organized-left_6: -402682731
+      Warrior_Red-Organized-left_7: 2135246479
+      Warrior_Red-Organized-left_8: -2059527627
+      Warrior_Red-Organized-left_9: -1222831829
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

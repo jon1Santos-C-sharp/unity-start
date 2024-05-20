@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +10,15 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 5f; // Velocidade de movimento do jogador
     private Rigidbody2D rb; // Referência ao componente Rigidbody2D do jogador
+
+    private Animator animator;
+
+    private float lastDirection;
+
+    private bool isMoving;
+    void Awake(){
+        animator = GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -24,8 +36,15 @@ public class PlayerController : MonoBehaviour
         movement.y += moveVertical;
         movement.x += moveHorizontal;
 
+        if(moveHorizontal != 0) lastDirection = moveHorizontal;
+        if(moveHorizontal != 0 || moveVertical != 0) isMoving = true;
+        else isMoving = false;
+        animator.SetFloat("moveX", moveHorizontal != 0 ? moveHorizontal : lastDirection);
+        animator.SetBool("isMoving", isMoving);
+
         rb.velocity = movement * speed; // Aplica o movimento ao Rigidbody2D do jogador
     }
+
 
     // NO RIGIDBODY2 MOVE
 
