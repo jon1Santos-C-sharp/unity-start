@@ -1,8 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,67 +9,94 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
+    public Hashtable LayerColliderOption;
+    [System.Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
+    public class ColliderOptions
+    {
+        public LayerMask layer;
+        public float colliderRadius = 0.2f;
+    }
+
+    public ColliderOptions colliderOptions;
+
     private float lastDirection;
 
     private bool isMoving;
+
     void Awake(){
         animator = GetComponent<Animator>();
     }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); // Obtém a referência ao Rigidbody2D do jogador
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal"); // Obtém a entrada horizontal (teclas de seta ou A e D)
-        float moveVertical = Input.GetAxis("Vertical");
+        
+        float moveHorizontal = Input.GetAxisRaw("Horizontal"); // Pega o eixo de movimentação horizontal (em qualquer dispositivo) sem filtro de suavização
+        float moveVertical = Input.GetAxisRaw("Vertical");
+        Vector2 moviment = new (moveHorizontal, moveVertical);
+        
+        Move(moviment);
 
-        Vector2 movement = new();
-
-        movement.y += moveVertical;
-        movement.x += moveHorizontal;
-
-        if(moveHorizontal != 0) lastDirection = moveHorizontal;
-        if(moveHorizontal != 0 || moveVertical != 0) isMoving = true;
-        else isMoving = false;
+        if (moveHorizontal != 0) lastDirection = moveHorizontal; // Manter a sprite da última direção do movimento do personagem
         animator.SetFloat("moveX", moveHorizontal != 0 ? moveHorizontal : lastDirection);
         animator.SetBool("isMoving", isMoving);
-
-        rb.velocity = movement * speed; // Aplica o movimento ao Rigidbody2D do jogador
     }
 
+    void Move(Vector2 vec){
+        
+         if (vec != Vector2.zero) // Verificando se o personagem está parado, a fim de setar o atributo isMoving
+        {
+            Vector2 newPosition = rb.position + speed * Time.fixedDeltaTime * vec;
 
-    // NO RIGIDBODY2 MOVE
+            if (IsWalkable(newPosition)) // Verificando colisões
+            {
+                rb.MovePosition(newPosition);
+            }
+
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+    }
+
+    bool IsWalkable(Vector2 targetPos)
+    {
+        Collider2D collider = Physics2D.OverlapCircle(targetPos, colliderOptions.colliderRadius, colliderOptions.layer);
+        return collider == null;
+    }
 
     // public float moveSpeed;
 
-    // public bool isMoving;
+    // public bool isMoving = false;
 
     // private Vector2 input;
     // private void Update(){
-    //     if(!isMoving){
-    //         input.x = Input.GetAxis("Horizontal");
-    //         input.x = Input.GetAxis("Vertical");
+    //     // if(!isMoving){
+    //         input.x = Input.GetAxisRaw("Horizontal");
+    //         input.y = Input.GetAxisRaw("Vertical");
 
     //         if(input != Vector2.zero){
     //             var targetPos = transform.position;
     //             targetPos.x += input.x;
     //             targetPos.y += input.y;
 
-    //             StartCoroutine(Move(targetPos))
+    //             StartCoroutine(Move(targetPos));
     //         }
-    //     }
+    //     // }
     // }
 
     // IEnumerator Move(Vector3 targetPos){
     //     while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon){
-    //         transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+    //         transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.fixedDeltaTime);
     //         yield return null;
     //     }
     //     transform.position = targetPos;
-    //     isMoving = false;
+    //     // isMoving = false;
     // }
 }
