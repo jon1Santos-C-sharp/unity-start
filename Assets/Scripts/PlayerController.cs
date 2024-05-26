@@ -1,4 +1,4 @@
-using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
-    public Hashtable LayerColliderOption;
     [System.Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
     public class ColliderOptions
     {
@@ -23,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isMoving;
 
+
     void Awake(){
         animator = GetComponent<Animator>();
     }
@@ -35,10 +35,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        float moveHorizontal = Input.GetAxisRaw("Horizontal"); // Pega o eixo de movimentação horizontal (em qualquer dispositivo) sem filtro de suavização
-        float moveVertical = Input.GetAxisRaw("Vertical");
+        float moveHorizontal = Input.GetAxis("Horizontal"); // Pega o eixo de movimentação horizontal (em qualquer dispositivo) sem filtro de suavização
+        float moveVertical = Input.GetAxis("Vertical");
         Vector2 moviment = new (moveHorizontal, moveVertical);
-        
         Move(moviment);
 
         if (moveHorizontal != 0) lastDirection = moveHorizontal; // Manter a sprite da última direção do movimento do personagem
@@ -46,17 +45,16 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isMoving", isMoving);
     }
 
-    void Move(Vector2 vec){
+    void Move(Vector2 moveVec){
         
-         if (vec != Vector2.zero) // Verificando se o personagem está parado, a fim de setar o atributo isMoving
+         if (moveVec != Vector2.zero) // Verificando se o personagem está parado, a fim de setar o atributo isMoving
         {
-            Vector2 newPosition = rb.position + speed * Time.fixedDeltaTime * vec;
-
+            Vector2 newPosition = rb.position + speed * Time.fixedDeltaTime * moveVec;
             if (IsWalkable(newPosition)) // Verificando colisões
             {
                 rb.MovePosition(newPosition);
             }
-
+            
             isMoving = true;
         }
         else
