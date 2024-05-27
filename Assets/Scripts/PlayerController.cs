@@ -3,28 +3,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public float speed = 5f;
-    public float acceleration = 0.4f;  // Taxa de aceleração
-    public float deceleration = 0.8f;  // Taxa de desaceleração
+    private Vector2 inputDirections;
     private Vector2 currentVelocity = Vector2.zero;
     private Rigidbody2D rb; // Referência ao componente Rigidbody2D do jogador
 
     private Animator animator;
 
-    [System.Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
-    public class ColliderOptions
-    {
-        public LayerMask layer;
-        public float colliderRadius = 0.2f;
-    }
-
+    private float lastHorizontalDirection;
+    private bool isMoving;
     public ColliderOptions colliderOptions;
 
-    private float lastDirection;
-
-    private bool isMoving;
-
+    public MoveOptions moveOptions;
 
     void Awake(){
         animator = GetComponent<Animator>();
@@ -33,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        colliderOptions.layer = LayerMask.GetMask("SolidObjects");
     }
 
     void Update()
@@ -40,22 +30,30 @@ public class PlayerController : MonoBehaviour
         
         float moveHorizontal = Input.GetAxisRaw("Horizontal"); // Pega o eixo de movimentação horizontal (em qualquer dispositivo) sem filtro de suavização
         float moveVertical = Input.GetAxisRaw("Vertical");
-        Vector2 moviment = new Vector2(moveHorizontal, moveVertical).normalized;
-
-        if (moviment.magnitude > 0)
+        inputDirections = new Vector2(moveHorizontal, moveVertical).normalized;
+        if (inputDirections.magnitude > 0)
         {
-            currentVelocity = Vector2.Lerp(currentVelocity, moviment * speed, Time.fixedDeltaTime * acceleration);
-            lastDirection = moveHorizontal != 0 ? moveHorizontal : lastDirection; // Manter a sprite da última direção do movimento do personagem
+            lastHorizontalDirection = moveHorizontal != 0 ? moveHorizontal : lastHorizontalDirection;
+        }
+
+        animator.SetFloat("moveX", lastHorizontalDirection);
+        animator.SetBool("isMoving", isMoving);
+    }
+
+    void FixedUpdate()
+    {
+        // Calcula a nova velocidade
+        if (inputDirections.magnitude > 0)
+        {
+            currentVelocity = Vector2.Lerp(currentVelocity, inputDirections * moveOptions.speed, Time.fixedDeltaTime * moveOptions.acceleration);
         }
         else
         {
-            currentVelocity = Vector2.Lerp(currentVelocity, Vector2.zero, Time.fixedDeltaTime * deceleration);
+            currentVelocity = Vector2.Lerp(currentVelocity, Vector2.zero, Time.fixedDeltaTime * moveOptions.deceleration);
         }
 
+        // Move o personagem com base na nova velocidade calculada
         Move(currentVelocity);
-
-        animator.SetFloat("moveX", moveHorizontal != 0 ? moveHorizontal : lastDirection);
-        animator.SetBool("isMoving", isMoving);
     }
 
     void Move(Vector2 moveVec){
@@ -71,7 +69,6 @@ public class PlayerController : MonoBehaviour
             else
             {
                 currentVelocity = Vector2.zero; // Parar o movimento ao colidir
-                isMoving = false;
             }
         }
         else
@@ -84,6 +81,22 @@ public class PlayerController : MonoBehaviour
     {
         Collider2D collider = Physics2D.OverlapCircle(targetPos, colliderOptions.colliderRadius, colliderOptions.layer);
         return collider == null;
+    }
+
+    
+    [System.Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
+    public class MoveOptions
+    {
+        public float speed = 5.5f;
+        public float acceleration = 2f;  // Taxa de aceleração
+        public float deceleration = 5f;  // Taxa de desaceleração
+    }
+
+    [System.Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
+    public class ColliderOptions
+    {
+        public LayerMask layer;
+        public float colliderRadius = 0.3f;
     }
 
     // public float moveSpeed;
