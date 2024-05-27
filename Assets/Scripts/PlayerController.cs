@@ -4,7 +4,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float speed = 5f; // Velocidade de movimento do jogador
+    public float speed = 5f;
+    public float acceleration = 0.4f;  // Taxa de aceleração
+    public float deceleration = 0.8f;  // Taxa de desaceleração
+    private Vector2 currentVelocity = Vector2.zero;
     private Rigidbody2D rb; // Referência ao componente Rigidbody2D do jogador
 
     private Animator animator;
@@ -35,27 +38,41 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        float moveHorizontal = Input.GetAxis("Horizontal"); // Pega o eixo de movimentação horizontal (em qualquer dispositivo) sem filtro de suavização
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector2 moviment = new (moveHorizontal, moveVertical);
-        Move(moviment);
+        float moveHorizontal = Input.GetAxisRaw("Horizontal"); // Pega o eixo de movimentação horizontal (em qualquer dispositivo) sem filtro de suavização
+        float moveVertical = Input.GetAxisRaw("Vertical");
+        Vector2 moviment = new Vector2(moveHorizontal, moveVertical).normalized;
 
-        if (moveHorizontal != 0) lastDirection = moveHorizontal; // Manter a sprite da última direção do movimento do personagem
+        if (moviment.magnitude > 0)
+        {
+            currentVelocity = Vector2.Lerp(currentVelocity, moviment * speed, Time.fixedDeltaTime * acceleration);
+            lastDirection = moveHorizontal != 0 ? moveHorizontal : lastDirection; // Manter a sprite da última direção do movimento do personagem
+        }
+        else
+        {
+            currentVelocity = Vector2.Lerp(currentVelocity, Vector2.zero, Time.fixedDeltaTime * deceleration);
+        }
+
+        Move(currentVelocity);
+
         animator.SetFloat("moveX", moveHorizontal != 0 ? moveHorizontal : lastDirection);
         animator.SetBool("isMoving", isMoving);
     }
 
     void Move(Vector2 moveVec){
         
-         if (moveVec != Vector2.zero) // Verificando se o personagem está parado, a fim de setar o atributo isMoving
+       if (moveVec.magnitude > 0.1f) // Um pequeno valor para verificar se está realmente se movendo
         {
-            Vector2 newPosition = rb.position + speed * Time.fixedDeltaTime * moveVec;
-            if (IsWalkable(newPosition)) // Verificando colisões
+            Vector2 newPosition = rb.position + moveVec * Time.fixedDeltaTime;
+            if (IsWalkable(newPosition))
             {
                 rb.MovePosition(newPosition);
+                isMoving = true;
             }
-            
-            isMoving = true;
+            else
+            {
+                currentVelocity = Vector2.zero; // Parar o movimento ao colidir
+                isMoving = false;
+            }
         }
         else
         {

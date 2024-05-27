@@ -1618,6 +1618,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  acceleration: 2
+  deceleration: 2
   colliderOptions:
     layer:
       serializedVersion: 2
