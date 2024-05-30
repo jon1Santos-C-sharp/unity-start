@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector2 inputDirections;
-    private Vector2 currentVelocity = Vector2.zero;
+    private Vector2 direction;
+    private Vector2 currentPosition = Vector2.zero;
     private Rigidbody2D rb; // Referência ao componente Rigidbody2D do jogador
 
     private Animator animator;
@@ -30,11 +30,12 @@ public class PlayerController : MonoBehaviour
         
         float moveHorizontal = Input.GetAxisRaw("Horizontal"); // Pega o eixo de movimentação horizontal (em qualquer dispositivo) sem filtro de suavização
         float moveVertical = Input.GetAxisRaw("Vertical");
-        inputDirections = new Vector2(moveHorizontal, moveVertical).normalized;
-        if (inputDirections.magnitude > 0)
-        {
-            lastHorizontalDirection = moveHorizontal != 0 ? moveHorizontal : lastHorizontalDirection;
-        }
+        bool blink = Input.GetKeyDown(KeyCode.J);
+
+        lastHorizontalDirection = moveHorizontal != 0 ? moveHorizontal : lastHorizontalDirection;
+        direction = new Vector2(moveHorizontal, moveVertical).normalized;
+        
+        if(blink) rb.position += direction * 2;
 
         animator.SetFloat("moveX", lastHorizontalDirection);
         animator.SetBool("isMoving", isMoving);
@@ -43,24 +44,24 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Calcula a nova velocidade
-        if (inputDirections.magnitude > 0)
+        if (direction.magnitude > 0)
         {
-            currentVelocity = Vector2.Lerp(currentVelocity, inputDirections * moveOptions.speed, Time.fixedDeltaTime * moveOptions.acceleration);
+            currentPosition = Vector2.Lerp(currentPosition, direction * moveOptions.speed, Time.fixedDeltaTime * moveOptions.acceleration);
         }
         else
         {
-            currentVelocity = Vector2.Lerp(currentVelocity, Vector2.zero, Time.fixedDeltaTime * moveOptions.deceleration);
+            currentPosition = Vector2.Lerp(currentPosition, Vector2.zero, Time.fixedDeltaTime * moveOptions.deceleration);
         }
 
         // Move o personagem com base na nova velocidade calculada
-        Move(currentVelocity);
+        Move();
     }
 
-    void Move(Vector2 moveVec){
-        
-       if (moveVec.magnitude > 0.1f) // Um pequeno valor para verificar se está realmente se movendo
+    void Move()
+    {
+       if (currentPosition.magnitude > 0.1f) // Um pequeno valor para verificar se está realmente se movendo
         {
-            Vector2 newPosition = rb.position + moveVec * Time.fixedDeltaTime;
+            Vector2 newPosition = rb.position + currentPosition * Time.fixedDeltaTime;
             if (IsWalkable(newPosition))
             {
                 rb.MovePosition(newPosition);
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                currentVelocity = Vector2.zero; // Parar o movimento ao colidir
+                currentPosition = Vector2.zero; // Parar o movimento ao colidir
             }
         }
         else
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         public float speed = 5.5f;
         public float acceleration = 2f;  // Taxa de aceleração
-        public float deceleration = 5f;  // Taxa de desaceleração
+        public float deceleration = 5.5f;  // Taxa de desaceleração
     }
 
     [System.Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
@@ -98,33 +99,4 @@ public class PlayerController : MonoBehaviour
         public LayerMask layer;
         public float colliderRadius = 0.3f;
     }
-
-    // public float moveSpeed;
-
-    // public bool isMoving = false;
-
-    // private Vector2 input;
-    // private void Update(){
-    //     // if(!isMoving){
-    //         input.x = Input.GetAxisRaw("Horizontal");
-    //         input.y = Input.GetAxisRaw("Vertical");
-
-    //         if(input != Vector2.zero){
-    //             var targetPos = transform.position;
-    //             targetPos.x += input.x;
-    //             targetPos.y += input.y;
-
-    //             StartCoroutine(Move(targetPos));
-    //         }
-    //     // }
-    // }
-
-    // IEnumerator Move(Vector3 targetPos){
-    //     while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon){
-    //         transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.fixedDeltaTime);
-    //         yield return null;
-    //     }
-    //     transform.position = targetPos;
-    //     // isMoving = false;
-    // }
 }
