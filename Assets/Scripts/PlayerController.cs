@@ -1,16 +1,16 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector2 direction;
-    private Vector2 currentPosition = Vector2.zero;
+    private Vector2 inputDirection; // Input de movimentação
+    private Vector2 currentVelocity = Vector2.zero; // Como velocidade se trata de uma grandeza vetorial a mesma deve conter módulo (magnitude, direção e sentido)
     private Rigidbody2D rb; // Referência ao componente Rigidbody2D do jogador
 
     private Animator animator;
 
     private float lastHorizontalDirection;
-    private bool isMoving;
+    private bool animationIsMoving;
     public ColliderOptions colliderOptions;
 
     public MoveOptions moveOptions;
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         colliderOptions.layer = LayerMask.GetMask("SolidObjects");
+        Debug.Log(new Vector2(0, 1) * 5);
     }
 
     void Update()
@@ -32,25 +33,25 @@ public class PlayerController : MonoBehaviour
         float moveVertical = Input.GetAxisRaw("Vertical");
         bool blink = Input.GetKeyDown(KeyCode.J);
 
+        inputDirection = new Vector2(moveHorizontal, moveVertical).normalized;
         lastHorizontalDirection = moveHorizontal != 0 ? moveHorizontal : lastHorizontalDirection;
-        direction = new Vector2(moveHorizontal, moveVertical).normalized;
         
-        if(blink) rb.position += direction * 2;
+        if(blink) rb.position += inputDirection * 2;
 
         animator.SetFloat("moveX", lastHorizontalDirection);
-        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isMoving", animationIsMoving);
     }
 
     void FixedUpdate()
     {
         // Calcula a nova velocidade
-        if (direction.magnitude > 0)
+        if (inputDirection.magnitude > 0)
         {
-            currentPosition = Vector2.Lerp(currentPosition, direction * moveOptions.speed, Time.fixedDeltaTime * moveOptions.acceleration);
+            currentVelocity = Vector2.Lerp(currentVelocity, inputDirection * moveOptions.maxSpeed, Time.fixedDeltaTime * moveOptions.acceleration); 
         }
         else
         {
-            currentPosition = Vector2.Lerp(currentPosition, Vector2.zero, Time.fixedDeltaTime * moveOptions.deceleration);
+            currentVelocity = Vector2.Lerp(currentVelocity, Vector2.zero, Time.fixedDeltaTime * moveOptions.deceleration);
         }
 
         // Move o personagem com base na nova velocidade calculada
@@ -59,22 +60,22 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-       if (currentPosition.magnitude > 0.1f) // Um pequeno valor para verificar se está realmente se movendo
+       if (currentVelocity.magnitude > 0.1f) // Um pequeno valor para verificar se está realmente se movendo
         {
-            Vector2 newPosition = rb.position + currentPosition * Time.fixedDeltaTime;
+            Vector2 newPosition = rb.position + currentVelocity * Time.fixedDeltaTime;
             if (IsWalkable(newPosition))
             {
                 rb.MovePosition(newPosition);
-                isMoving = true;
+                animationIsMoving = true;
             }
             else
             {
-                currentPosition = Vector2.zero; // Parar o movimento ao colidir
+                currentVelocity = Vector2.zero; // Parar o movimento ao colidir
             }
         }
         else
         {
-            isMoving = false;
+            animationIsMoving = false;
         }
     }
 
@@ -85,15 +86,15 @@ public class PlayerController : MonoBehaviour
     }
 
     
-    [System.Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
+    [Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
     public class MoveOptions
     {
-        public float speed = 5.5f;
+        public float maxSpeed = 5.5f;
         public float acceleration = 2f;  // Taxa de aceleração
         public float deceleration = 5.5f;  // Taxa de desaceleração
     }
 
-    [System.Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
+    [Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
     public class ColliderOptions
     {
         public LayerMask layer;
