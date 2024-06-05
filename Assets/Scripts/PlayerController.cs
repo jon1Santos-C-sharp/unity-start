@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     public class ColliderOptions
     {
         public LayerMask layer;
-        public float radius = 0.3f;
+        public float radius = 0.2f;
     }
 
     [Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
