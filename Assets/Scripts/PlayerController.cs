@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float lastHorizontalDirection;
     private bool animationIsMoving;
     public ColliderOptions colliderOptions;
+    public InteractableOptions interactableOptions;
 
     public MoveOptions moveOptions;
 
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         colliderOptions.layer = LayerMask.GetMask("SolidObjects");
+        interactableOptions.layer = LayerMask.GetMask("InteractableObjects");
     }
 
     void Update()
@@ -76,7 +78,9 @@ public class PlayerController : MonoBehaviour
 
     bool IsWalkable(Vector2 targetPos)
     {
-        return Physics2D.OverlapCircle(targetPos, colliderOptions.colliderRadius, colliderOptions.layer) == null;
+        var collider = Physics2D.OverlapCircle(targetPos, colliderOptions.radius, colliderOptions.layer);
+        var interactable = Physics2D.OverlapCircle(targetPos, interactableOptions.radius, interactableOptions.layer);
+        return  collider == null && interactable == null;
     }
 
     
@@ -92,6 +96,13 @@ public class PlayerController : MonoBehaviour
     public class ColliderOptions
     {
         public LayerMask layer;
-        public float colliderRadius = 0.3f;
+        public float radius = 0.3f;
+    }
+
+    [Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
+    public class InteractableOptions
+    {
+        public LayerMask layer;
+        public float radius = 0.3f;
     }
 }
