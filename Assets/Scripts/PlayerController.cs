@@ -17,13 +17,8 @@ public class PlayerController : MonoBehaviour
 
     void Awake(){
         animator = GetComponent<Animator>();
-    }
-
-    void Start()
-    {
         rb = GetComponent<Rigidbody2D>();
         colliderOptions.layer = LayerMask.GetMask("SolidObjects");
-        Debug.Log(new Vector2(0, 1) * 5);
     }
 
     void Update()
@@ -60,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-       if (currentVelocity.magnitude > 0.1f) // Um pequeno valor para verificar se está realmente se movendo
+       if (currentVelocity.magnitude > 0.1f) // Um treshold para verificar se está realmente se movendo
         {
             Vector2 newPosition = rb.position + currentVelocity * Time.fixedDeltaTime;
             if (IsWalkable(newPosition))
@@ -81,8 +76,7 @@ public class PlayerController : MonoBehaviour
 
     bool IsWalkable(Vector2 targetPos)
     {
-        Collider2D collider = Physics2D.OverlapCircle(targetPos, colliderOptions.colliderRadius, colliderOptions.layer);
-        return collider == null;
+        return Physics2D.OverlapCircle(targetPos, colliderOptions.colliderRadius, colliderOptions.layer) == null;
     }
 
     
