@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -18,9 +19,9 @@ public class PlayerController : MonoBehaviour
 
     public ColliderOptions colliderOptions; // Componente para identificação objetos colidíveis 
     private LayerMask solidObjectsLayer;
-    public InteractableOptions interactableOptions; // Componente para identificação de objetos interativos
     private LayerMask interactableObjectsLayer;
     private bool isWakablePos;
+    private Vector2 lastDirection;
     void Awake(){
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -53,10 +54,11 @@ public class PlayerController : MonoBehaviour
     }
     private void Skills(){
         Blink();
+        Interaction();
     }
     private void Blink(){
-        bool blink = Input.GetKeyDown(KeyCode.J);
-        if(blink){
+        bool input = Input.GetKeyDown(KeyCode.J);
+        if(input){
              Vector2 targetPos = rb.position + inputDirection * 2;
             if(IsWalkable(targetPos)){
                 rb.position = newPosition;
@@ -64,6 +66,15 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         };
+    }
+    private void Interaction(){
+       bool input = Input.GetKeyDown(KeyCode.E);
+       if(input){
+        var targetPos = rb.position + lastDirection * 0.25f;
+        if(IsInteractable(targetPos)){
+            Debug.Log("oi");
+        }
+       }
     }
     private void UpdateAnimation(){
         if(moveHorizontal != 0){
@@ -87,6 +98,7 @@ public class PlayerController : MonoBehaviour
         {
             currentVelocity = Vector2.Lerp(currentVelocity, inputDirection * moveOptions.maxSpeed, Time.fixedDeltaTime * moveOptions.acceleration); 
             animationIsMoving = true;
+            lastDirection = inputDirection;
         }
         else
         {
@@ -99,7 +111,7 @@ public class PlayerController : MonoBehaviour
         {
             animationIsMoving = true;
             newPosition = rb.position + currentVelocity * Time.fixedDeltaTime;
-            if(IsWalkable(newPosition)){
+            if(IsWalkable(newPosition) && !IsInteractable(newPosition)){
                 rb.MovePosition(newPosition);
                 isWakablePos = true;
             }else
@@ -115,9 +127,14 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsWalkable(Vector2 targetPos)
     {
-        var collider = Physics2D.OverlapCircle(targetPos, colliderOptions.radius, solidObjectsLayer);
-        var interactable = Physics2D.OverlapCircle(targetPos, interactableOptions.radius, interactableObjectsLayer);
-        return collider == null && interactable == null;
+        var collider = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, solidObjectsLayer);
+        return collider == null;
+        
+    }
+    private bool IsInteractable(Vector2 targetPos)
+    {
+        var interactable = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, interactableObjectsLayer);
+        return interactable != null;
         
     }
     
@@ -132,12 +149,6 @@ public class PlayerController : MonoBehaviour
     [Serializable]
     public class ColliderOptions
     {
-        public float radius = 0.2f;
-    }
-
-    [Serializable]
-    public class InteractableOptions
-    {
-        public float radius = 0.3f;
+        public float characterCircleRadius = 0.2f;
     }
 }
