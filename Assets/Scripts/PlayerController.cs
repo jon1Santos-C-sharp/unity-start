@@ -71,8 +71,11 @@ public class PlayerController : MonoBehaviour
        bool input = Input.GetKeyDown(KeyCode.E);
        if(input){
         var targetPos = rb.position + lastDirection * 0.25f;
-        if(IsInteractable(targetPos)){
-            Debug.Log("oi");
+        var interactableObj = IsInteractable(targetPos);
+        if(interactableObj){
+             var interactableRb = interactableObj.GetComponent<Rigidbody2D>();
+             interactableRb.bodyType = RigidbodyType2D.Dynamic;
+            Debug.Log(interactableRb.bodyType);
         }
        }
     }
@@ -129,13 +132,11 @@ public class PlayerController : MonoBehaviour
     {
         var collider = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, solidObjectsLayer);
         return collider == null;
-        
     }
-    private bool IsInteractable(Vector2 targetPos)
+    private Collider2D IsInteractable(Vector2 targetPos)
     {
         var interactable = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, interactableObjectsLayer);
-        return interactable != null;
-        
+        return interactable;
     }
     
     [Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector

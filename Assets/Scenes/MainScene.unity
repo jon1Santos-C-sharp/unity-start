@@ -7820,7 +7820,6 @@ MonoBehaviour:
     deceleration: 5.5
   colliderOptions:
     characterCircleRadius: 0.2
-  ldPercentage: 0.08
 --- !u!50 &780094482
 Rigidbody2D:
   serializedVersion: 4
@@ -7949,6 +7948,7 @@ GameObject:
   - component: {fileID: 1563547552}
   - component: {fileID: 1563547550}
   - component: {fileID: 1563547554}
+  - component: {fileID: 1563547555}
   m_Layer: 8
   m_Name: NPC-1
   m_TagString: Untagged
@@ -8029,7 +8029,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28125, y: 1.4375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -8085,6 +8085,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.08, y: 0.09}
   m_Size: {x: 1.1263219, y: 0.4800002}
   m_Direction: 1
+--- !u!95 &1563547555
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563547549}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7318b47eba167804ca9d8b2e94b8de50, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -134,10 +134,10 @@ TextureImporter:
       name: Torch_Red_1
       rect:
         serializedVersion: 2
-        x: 187
+        x: 181
         y: 804
-        width: 79
-        height: 85
+        width: 88
+        height: 91
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: Torch_Red_3
       rect:
         serializedVersion: 2
-        x: 348
+        x: 347
         y: 805
-        width: 81
-        height: 85
+        width: 84
+        height: 92
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,34 +173,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Torch_Red_4
-      rect:
-        serializedVersion: 2
-        x: 510
-        y: 807
-        width: 72
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc208bceaa3a97d47a011c596ec9a3bc
-      internalID: 1830737644
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Torch_Red_5
       rect:
         serializedVersion: 2
-        x: 511
-        y: 883
-        width: 9
-        height: 7
+        x: 515
+        y: 806
+        width: 80
+        height: 94
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,10 +197,10 @@ TextureImporter:
       name: Torch_Red_7
       rect:
         serializedVersion: 2
-        x: 667
+        x: 664
         y: 805
-        width: 76
-        height: 88
+        width: 79
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,10 +218,10 @@ TextureImporter:
       name: Torch_Red_9
       rect:
         serializedVersion: 2
-        x: 826
+        x: 831
         y: 803
-        width: 82
-        height: 94
+        width: 79
+        height: 99
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,10 +239,10 @@ TextureImporter:
       name: Torch_Red_10
       rect:
         serializedVersion: 2
-        x: 992
-        y: 802
-        width: 75
-        height: 94
+        x: 998
+        y: 805
+        width: 85
+        height: 95
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
