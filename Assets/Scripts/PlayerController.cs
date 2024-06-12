@@ -73,9 +73,7 @@ public class PlayerController : MonoBehaviour
         var targetPos = rb.position + lastDirection * 0.25f;
         var interactableObj = IsInteractable(targetPos);
         if(interactableObj){
-             var interactableRb = interactableObj.GetComponent<Rigidbody2D>();
-             interactableRb.bodyType = RigidbodyType2D.Dynamic;
-            Debug.Log(interactableRb.bodyType);
+           interactableObj.GetComponent<IInteractable>()?.Interact();
         }
        }
     }
@@ -84,8 +82,9 @@ public class PlayerController : MonoBehaviour
             lastHorizontalDirection = moveHorizontal;
         }
         
-        animator.SetFloat("moveX", lastHorizontalDirection);
         animator.SetBool("isMoving", animationIsMoving);
+        if(animationIsMoving) animator.SetFloat("moveXMoving", lastHorizontalDirection);
+        else animator.SetFloat("moveX", lastHorizontalDirection);
     }
     void FixedUpdate()
     {
@@ -100,8 +99,12 @@ public class PlayerController : MonoBehaviour
         if(inputDirection.magnitude > 0)
         {
             currentVelocity = Vector2.Lerp(currentVelocity, inputDirection * moveOptions.maxSpeed, Time.fixedDeltaTime * moveOptions.acceleration); 
-            animationIsMoving = true;
             lastDirection = inputDirection;
+            animationIsMoving = true;
+        }
+        else if(inputDirection.magnitude == 0 && currentVelocity.magnitude < 0.1f) // Parar a animação de caminhada, só quando não tiver input pressionado e velocidade for menor que o treshold
+        {
+            animationIsMoving = false;
         }
         else
         {
@@ -112,7 +115,6 @@ public class PlayerController : MonoBehaviour
     {
        if (currentVelocity.magnitude > 0.1f) // Um treshold para verificar se está realmente se movendo
         {
-            animationIsMoving = true;
             newPosition = rb.position + currentVelocity * Time.fixedDeltaTime;
             if(IsWalkable(newPosition) && !IsInteractable(newPosition)){
                 rb.MovePosition(newPosition);
@@ -122,10 +124,6 @@ public class PlayerController : MonoBehaviour
                 isWakablePos = false;
                 currentVelocity = Vector2.zero;
             }
-        }
-        else
-        {
-            animationIsMoving = false;
         }
     }
     private bool IsWalkable(Vector2 targetPos)
