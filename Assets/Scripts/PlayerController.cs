@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -70,8 +69,8 @@ public class PlayerController : MonoBehaviour
     private void Interaction(){
        bool input = Input.GetKeyDown(KeyCode.E);
        if(input){
-        var targetPos = rb.position + lastDirection * 0.25f;
-        var interactableObj = IsInteractable(targetPos);
+        Vector2 targetPos = rb.position + lastDirection * 0.25f;
+        Collider2D interactableObj = IsInteractable(targetPos);
         if(interactableObj){
            interactableObj.GetComponent<IInteractable>()?.Interact();
         }
@@ -128,12 +127,12 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsWalkable(Vector2 targetPos)
     {
-        var collider = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, solidObjectsLayer);
+        Collider2D collider = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, solidObjectsLayer);
         return collider == null;
     }
     private Collider2D IsInteractable(Vector2 targetPos)
     {
-        var interactable = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, interactableObjectsLayer);
+        Collider2D interactable = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, interactableObjectsLayer);
         return interactable;
     }
     
