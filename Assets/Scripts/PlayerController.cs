@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 newPosition;
 
     private Animator animator; // Componente para aplicação de animação
- 
+    public AnimationOptions animationOptions;
+
     private float lastHorizontalDirection; // Var para identificar a última posição após uma movimentação (para fins de animação)
     private bool animationIsMoving; // Var para identificar se o objeto está parado ou em movimento (para fins de animação)
 
@@ -21,37 +22,48 @@ public class PlayerController : MonoBehaviour
     private LayerMask interactableObjectsLayer;
     private bool isWakablePos;
     private Vector2 lastDirection;
+
     void Awake(){
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         solidObjectsLayer = LayerMask.GetMask("SolidObjects");
         interactableObjectsLayer = LayerMask.GetMask("InteractableObjects");
     }
+
+    void Start(){
+        animator.CrossFade("Idle", 0.1f);
+    }
     void Update()
     {
         SetInputs();
         Skills();
         UpdateAnimation();
+        SetWalkAnimation();
     }
-    private void SetInputs(){
+    private void SetInputs()
+    {
         moveHorizontal = Input.GetAxisRaw("Horizontal"); // Pega o eixo de movimentação horizontal (em qualquer dispositivo) sem filtro de suavização
         moveVertical = Input.GetAxisRaw("Vertical");
         inputDirection = new Vector2(moveHorizontal, moveVertical).normalized;
         SlideColliders();
     }
-    private void SlideColliders(){
+    private void SlideColliders()
+    {
          if(!isWakablePos){
-            if(newPosition.x != rb.position.x){
+            if(newPosition.x != rb.position.x)
+            {
                 if(inputDirection.y > 0) inputDirection.Set(0, 1);
                 if(inputDirection.y < 0) inputDirection.Set(0, -1);    
             }
-            if(newPosition.y != rb.position.y){
+            if(newPosition.y != rb.position.y)
+            {
                 if(inputDirection.x < 0) inputDirection.Set(-1, 0);
                 if(inputDirection.x > 0) inputDirection.Set(1, 0);
             }
         }
     }
-    private void Skills(){
+    private void Skills()
+    {
         Blink();
         Interaction();
     }
@@ -59,14 +71,17 @@ public class PlayerController : MonoBehaviour
         bool input = Input.GetKeyDown(KeyCode.J);
         if(input){
              Vector2 targetPos = rb.position + inputDirection * 2;
-            if(IsWalkable(targetPos)){
+            if(IsWalkable(targetPos))
+            {
                 rb.position = newPosition;
-            }else{
+            }else
+            {
                 return;
             }
         };
     }
-    private void Interaction(){
+    private void Interaction()
+    {
        bool input = Input.GetKeyDown(KeyCode.E);
        if(input){
         Vector2 targetPos = rb.position + lastDirection * 0.25f;
@@ -76,20 +91,36 @@ public class PlayerController : MonoBehaviour
         }
        }
     }
-    private void UpdateAnimation(){
+    private void UpdateAnimation()
+    {
         if(moveHorizontal != 0){
             lastHorizontalDirection = moveHorizontal;
         }
-        
-        animator.SetBool("isMoving", animationIsMoving);
+
         if(animationIsMoving) animator.SetFloat("moveXMoving", lastHorizontalDirection);
         else animator.SetFloat("moveX", lastHorizontalDirection);
+    }
+    private void SetWalkAnimation()
+    {
+        if(inputDirection.magnitude > 0)
+        {
+            animationIsMoving = true;
+            animator.Play("Walk");
+        }
+    }
+    public void CancelWalkAnimation(){
+        if(inputDirection == Vector2.zero && currentVelocity.magnitude < 0.1f)
+        {
+            animationIsMoving = false;
+            animator.Play("Idle");
+        }
     }
     void FixedUpdate()
     {
         Move();
     }
-    private void Move(){
+    private void Move()
+    {
         SetVelocity();
         SetNewPosition();
     }
@@ -99,23 +130,21 @@ public class PlayerController : MonoBehaviour
         {
             currentVelocity = Vector2.Lerp(currentVelocity, inputDirection * moveOptions.maxSpeed, Time.fixedDeltaTime * moveOptions.acceleration); 
             lastDirection = inputDirection;
-            animationIsMoving = true;
-        }
-        else if(inputDirection.magnitude == 0 && currentVelocity.magnitude < 0.1f) // Parar a animação de caminhada, só quando não tiver input pressionado e velocidade for menor que o treshold
-        {
-            animationIsMoving = false;
         }
         else
         {
             currentVelocity = Vector2.Lerp(currentVelocity, Vector2.zero, Time.fixedDeltaTime * moveOptions.deceleration);
         }
     }
+   
+    
     private void SetNewPosition()
     {
        if (currentVelocity.magnitude > 0.1f) // Um treshold para verificar se está realmente se movendo
         {
             newPosition = rb.position + currentVelocity * Time.fixedDeltaTime;
-            if(IsWalkable(newPosition) && !IsInteractable(newPosition)){
+            if(IsWalkable(newPosition) && !IsInteractable(newPosition))
+            {
                 rb.MovePosition(newPosition);
                 isWakablePos = true;
             }else
@@ -141,10 +170,15 @@ public class PlayerController : MonoBehaviour
     {
         public float maxSpeed = 5.5f;
         public float acceleration = 2f;  // Taxa de aceleração
-        public float deceleration = 5.5f;  // Taxa de desaceleração
+        public float deceleration = 2.5f;  // Taxa de desaceleração
     }
 
-    [Serializable]
+    [Serializable]  
+    public class AnimationOptions
+    {
+        public float aceleration = 2.1f;
+    }
+    [Serializable] 
     public class ColliderOptions
     {
         public float characterCircleRadius = 0.2f;
