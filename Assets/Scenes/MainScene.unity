@@ -7820,11 +7820,10 @@ MonoBehaviour:
     acceleration: 2
     deceleration: 2.5
   animationOptions:
-    walkOptions:
-      firstTimeToEnd: 9.48
-      secondTimeToEnd: 3.56
+    aceleration: 2.1
+    stopWalkTresholdValue: 0.65
   colliderOptions:
-    characterCircleRadius: 0.2
+    circleRadius: 0.2
 --- !u!50 &780094482
 Rigidbody2D:
   serializedVersion: 4

@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
             lastHorizontalDirection = moveHorizontal;
         }
 
+        animator.SetBool("isMoving", animationIsMoving);
         if(animationIsMoving) animator.SetFloat("moveXMoving", lastHorizontalDirection);
         else animator.SetFloat("moveX", lastHorizontalDirection);
     }
@@ -105,14 +106,11 @@ public class PlayerController : MonoBehaviour
         if(inputDirection.magnitude > 0)
         {
             animationIsMoving = true;
-            animator.Play("Walk");
         }
-    }
-    public void CancelWalkAnimation(){
-        if(inputDirection == Vector2.zero && currentVelocity.magnitude < 0.1f)
+
+        if(inputDirection == Vector2.zero && currentVelocity.magnitude < animationOptions.stopWalkTresholdValue)
         {
             animationIsMoving = false;
-            animator.Play("Idle");
         }
     }
     void FixedUpdate()
@@ -156,15 +154,15 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsWalkable(Vector2 targetPos)
     {
-        Collider2D collider = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, solidObjectsLayer);
+        Collider2D collider = Physics2D.OverlapCircle(targetPos, colliderOptions.circleRadius, solidObjectsLayer);
         return collider == null;
     }
     private Collider2D IsInteractable(Vector2 targetPos)
     {
-        Collider2D interactable = Physics2D.OverlapCircle(targetPos, colliderOptions.characterCircleRadius, interactableObjectsLayer);
+        Collider2D interactable = Physics2D.OverlapCircle(targetPos, colliderOptions.circleRadius, interactableObjectsLayer);
         return interactable;
     }
-    
+   
     [Serializable] // Faz com que instâncias públicas dessa classe apareçam no inspector
     public class MoveOptions
     {
@@ -177,10 +175,11 @@ public class PlayerController : MonoBehaviour
     public class AnimationOptions
     {
         public float aceleration = 2.1f;
+        public float stopWalkTresholdValue = 0.65f;
     }
     [Serializable] 
     public class ColliderOptions
     {
-        public float characterCircleRadius = 0.2f;
+        public float circleRadius = 0.2f;
     }
 }
