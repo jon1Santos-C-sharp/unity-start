@@ -28,23 +28,24 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         solidObjectsLayer = LayerMask.GetMask("SolidObjects");
         interactableObjectsLayer = LayerMask.GetMask("InteractableObjects");
-    }
-
-    void Start(){
-        animator.CrossFade("Idle", 0.1f);
+        newPosition = rb.position;
     }
     void Update()
     {
         SetInputs();
-        Skills();
+        Interaction();
         SetWalkAnimation();
+        SlideColliders();
+    }
+    void FixedUpdate()
+    {
+        Move();
     }
     private void SetInputs()
     {
         moveHorizontal = Input.GetAxisRaw("Horizontal"); // Pega o eixo de movimentação horizontal (em qualquer dispositivo) sem filtro de suavização
         moveVertical = Input.GetAxisRaw("Vertical");
         inputDirection = new Vector2(moveHorizontal, moveVertical).normalized;
-        SlideColliders();
     }
     private void SlideColliders()
     {
@@ -61,10 +62,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    private void Skills()
-    {
-        Interaction();
-    }
     private void Interaction()
     {
        bool input = Input.GetKeyDown(KeyCode.E);
@@ -80,26 +77,26 @@ public class PlayerController : MonoBehaviour
     private void SetWalkAnimation()
     {
         float speedFraction = currentVelocity.magnitude / moveOptions.maxSpeed;
-        float animationSpeedTreshold = 0.6f;
-
+        Debug.Log(currentVelocity);
         if(moveHorizontal != 0){
             lastHorizontalDirection = moveHorizontal;
         }
 
-        if(speedFraction <= animationSpeedTreshold)
+        if(speedFraction <= animationOptions.walkTresholdValue)
         {
-            animator.speed = animationSpeedTreshold;
+            animator.speed = animationOptions.walkTresholdValue;
         }else{
             animator.speed = speedFraction;
         }
        
         if(inputDirection.magnitude > 0)
         {
+            lastDirection = inputDirection;
             animationIsMoving = true;
             animator.Play("Walk");
         }
         
-        if(inputDirection == Vector2.zero && currentVelocity.magnitude < animationOptions.stopWalkTresholdValue)
+        if(inputDirection.magnitude == 0 && currentVelocity.magnitude < animationOptions.walkTresholdValue)
         {
             animationIsMoving = false;
         }
@@ -107,43 +104,34 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isMoving", animationIsMoving);
         animator.SetFloat("moveX", lastHorizontalDirection);
     }
-    void FixedUpdate()
-    {
-        Move();
-    }
     private void Move()
     {
         SetVelocity();
-        SetNewPosition();
+        CheckColliders();
     }
     private void SetVelocity()
     {
         if(inputDirection.magnitude > 0)
         {
+            Debug.Log("set positive value");
             currentVelocity = Vector2.Lerp(currentVelocity, inputDirection * moveOptions.maxSpeed, Time.fixedDeltaTime * moveOptions.acceleration); 
-            lastDirection = inputDirection;
         }
         else
         {
             currentVelocity = Vector2.Lerp(currentVelocity, Vector2.zero, Time.fixedDeltaTime * moveOptions.deceleration);
         }
     }
-   
-    
-    private void SetNewPosition()
-    {
-       if (currentVelocity.magnitude > 0.1f) // Um treshold para verificar se está realmente se movendo
+    private void CheckColliders(){
+        newPosition = rb.position + currentVelocity * Time.fixedDeltaTime;
+        if(IsWalkable(newPosition) && !IsInteractable(newPosition))
         {
-            newPosition = rb.position + currentVelocity * Time.fixedDeltaTime;
-            if(IsWalkable(newPosition) && !IsInteractable(newPosition))
-            {
-                rb.MovePosition(newPosition);
-                isWakablePos = true;
-            }else
-            {
-                isWakablePos = false;
-                currentVelocity = Vector2.zero;
-            }
+            rb.MovePosition(newPosition);
+            isWakablePos = true;
+        }else
+        {
+            Debug.Log("collider false");
+            currentVelocity = Vector2.zero;
+            isWakablePos = false;
         }
     }
     private bool IsWalkable(Vector2 targetPos)
@@ -169,7 +157,7 @@ public class PlayerController : MonoBehaviour
     public class AnimationOptions
     {
         public float aceleration = 2.1f;
-        public float stopWalkTresholdValue = 0.65f;
+        public float walkTresholdValue = 0.65f;
     }
     [Serializable] 
     public class ColliderOptions
