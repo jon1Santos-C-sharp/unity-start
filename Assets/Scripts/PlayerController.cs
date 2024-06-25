@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public AnimationOptions animationOptions;
 
     private float lastHorizontalDirection; // Var para identificar a última posição após uma movimentação (para fins de animação)
-    private bool animationIsMoving; // Var para identificar se o objeto está parado ou em movimento (para fins de animação)
+    private bool animationIsMoving = false; // Var para identificar se o objeto está parado ou em movimento (para fins de animação)
 
     public ColliderOptions colliderOptions; // Componente para identificação objetos colidíveis 
     private LayerMask solidObjectsLayer;
@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
     {
         SetInputs();
         Skills();
-        UpdateAnimation();
         SetWalkAnimation();
     }
     private void SetInputs()
@@ -64,21 +63,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Skills()
     {
-        Blink();
         Interaction();
-    }
-    private void Blink(){
-        bool input = Input.GetKeyDown(KeyCode.J);
-        if(input){
-             Vector2 targetPos = rb.position + inputDirection * 2;
-            if(IsWalkable(targetPos))
-            {
-                rb.position = newPosition;
-            }else
-            {
-                return;
-            }
-        };
     }
     private void Interaction()
     {
@@ -91,27 +76,36 @@ public class PlayerController : MonoBehaviour
         }
        }
     }
-    private void UpdateAnimation()
+  
+    private void SetWalkAnimation()
     {
+        float speedFraction = currentVelocity.magnitude / moveOptions.maxSpeed;
+        float animationSpeedTreshold = 0.6f;
+
         if(moveHorizontal != 0){
             lastHorizontalDirection = moveHorizontal;
         }
 
-        animator.SetBool("isMoving", animationIsMoving);
-        if(animationIsMoving) animator.SetFloat("moveXMoving", lastHorizontalDirection);
-        else animator.SetFloat("moveX", lastHorizontalDirection);
-    }
-    private void SetWalkAnimation()
-    {
+        if(speedFraction <= animationSpeedTreshold)
+        {
+            animator.speed = animationSpeedTreshold;
+        }else{
+            animator.speed = speedFraction;
+        }
+       
         if(inputDirection.magnitude > 0)
         {
             animationIsMoving = true;
+            animator.Play("Walk");
         }
-
+        
         if(inputDirection == Vector2.zero && currentVelocity.magnitude < animationOptions.stopWalkTresholdValue)
         {
             animationIsMoving = false;
         }
+
+        animator.SetBool("isMoving", animationIsMoving);
+        animator.SetFloat("moveX", lastHorizontalDirection);
     }
     void FixedUpdate()
     {
