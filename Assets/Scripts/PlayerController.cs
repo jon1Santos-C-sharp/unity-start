@@ -23,12 +23,16 @@ public class PlayerController : MonoBehaviour
     private bool isWakablePos;
     private Vector2 lastDirection;
 
+    private CircleCollider2D circleCollider;
+
     void Awake(){
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         solidObjectsLayer = LayerMask.GetMask("SolidObjects");
         interactableObjectsLayer = LayerMask.GetMask("InteractableObjects");
         newPosition = rb.position;
+        circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider.forceReceiveLayers = LayerMask.GetMask("Default");
     }
     void Update()
     {
@@ -77,7 +81,6 @@ public class PlayerController : MonoBehaviour
     private void SetWalkAnimation()
     {
         float speedFraction = currentVelocity.magnitude / moveOptions.maxSpeed;
-        Debug.Log(currentVelocity);
         if(moveHorizontal != 0){
             lastHorizontalDirection = moveHorizontal;
         }
@@ -113,7 +116,6 @@ public class PlayerController : MonoBehaviour
     {
         if(inputDirection.magnitude > 0)
         {
-            Debug.Log("set positive value");
             currentVelocity = Vector2.Lerp(currentVelocity, inputDirection * moveOptions.maxSpeed, Time.fixedDeltaTime * moveOptions.acceleration); 
         }
         else
@@ -125,11 +127,10 @@ public class PlayerController : MonoBehaviour
         newPosition = rb.position + currentVelocity * Time.fixedDeltaTime;
         if(IsWalkable(newPosition) && !IsInteractable(newPosition))
         {
-            rb.MovePosition(newPosition);
+            rb.position = newPosition;
             isWakablePos = true;
         }else
         {
-            Debug.Log("collider false");
             currentVelocity = Vector2.zero;
             isWakablePos = false;
         }
