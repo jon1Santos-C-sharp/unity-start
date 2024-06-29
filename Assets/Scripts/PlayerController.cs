@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
     public class AnimationOptions
     {
         public float aceleration = 2.1f;
-        public float walkTresholdValue = 0.65f;
+        public float walkTresholdValue = 0.75f;
     }
     [Serializable] 
     public class ColliderOptions
