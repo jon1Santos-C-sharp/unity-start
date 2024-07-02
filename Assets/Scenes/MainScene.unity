@@ -7794,8 +7794,8 @@ GameObject:
   - component: {fileID: 780094483}
   - component: {fileID: 780094482}
   - component: {fileID: 780094486}
-  - component: {fileID: 780094481}
   - component: {fileID: 780094485}
+  - component: {fileID: 780094487}
   m_Layer: 0
   m_Name: Character-1
   m_TagString: Untagged
@@ -7803,27 +7803,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &780094481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 780094480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0a8f03e04820f54e9d768bb83e61480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveOptions:
-    maxSpeed: 5.5
-    acceleration: 2
-    deceleration: 2.5
-  animationOptions:
-    aceleration: 2.1
-    walkTresholdValue: 0.75
-  colliderOptions:
-    circleRadius: 0.2
 --- !u!50 &780094482
 Rigidbody2D:
   serializedVersion: 4
@@ -7975,6 +7954,37 @@ CircleCollider2D:
   m_Offset: {x: 0.03, y: -0.09}
   serializedVersion: 2
   m_Radius: 0.22065225
+--- !u!114 &780094487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780094480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb86730a47323ef478ef63a20aa2452a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveInput: {x: 0, y: 0}
+  walkState:
+    rb: {fileID: 0}
+    currentSpeed: {x: 0, y: 0}
+    newPosition: {x: 0, y: 0}
+    maxSpeed: 5.5
+    acceleration: 2
+    deceleration: 2.5
+  walkAnimationState:
+    walkTresholdValue: 0.75
+    animationIsMoving: 0
+  solidObjects:
+    circleRadius: 0.2
+  interactState:
+    circleRadius: 0.2
+    interactRadius: 0.2
+  circleCollider:
+    circleRadius: 0.2
+    collider: {fileID: 0}
 --- !u!1 &1563547549
 GameObject:
   m_ObjectHideFlags: 0

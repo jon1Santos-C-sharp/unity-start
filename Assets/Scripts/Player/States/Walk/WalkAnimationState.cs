@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class WalkAnimationState
 {   
-    public Animator animator;
+    private Animator animator;
     public float walkTresholdValue = 0.75f;
     public bool animationIsMoving;
 
